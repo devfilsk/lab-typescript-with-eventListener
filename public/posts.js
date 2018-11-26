@@ -1,10 +1,14 @@
 var EventManager = /** @class */ (function () {
     function EventManager() {
-        this.listeners = {
-        //Aqui são adicionados os eventos através do método addListener
-        };
+        //objeto de eventos
+        // private listeners = {
+        //     //Aqui são adicionados os eventos através do método addListener
+        // };
+        //declarando os tipos para o o objeto
+        this.listeners = {};
     }
     //Adiciona "escuta" para os eventos passados para o método addListener
+    //callable:{():void} declara que callable é do tipo função e seu retorno é void
     EventManager.prototype.addListener = function (eventName, callable) {
         //Se não houver evento criado, ele recebe um array
         if (!(this.listeners[eventName] instanceof Array)) {
@@ -35,11 +39,11 @@ var BoxPostList = /** @class */ (function () {
         buttonList.addEventListener('click', function () {
             _this.hiddenForm();
             //Dispara o evento do eventManager no momento em que houver um click
-            _this.eventManager.runEvent('box-post-list-click-hidden');
+            _this.eventManager.runEvent(BoxPostList.EVENT_CLICK_HIDDEN_BOX_LIST);
             // const boxForm = document.getElementById(BoxPostForm.boxId);
             // boxForm.removeAttribute('style');
         });
-        this.eventManager.addListener('box-post-form-click-hidden', function () {
+        this.eventManager.addListener(BoxPostForm.EVENT_CLICK_HIDDEN_BOX_FORM, function () {
             _this.showForm();
         });
     };
@@ -53,6 +57,7 @@ var BoxPostList = /** @class */ (function () {
         boxList.removeAttribute('style');
     };
     BoxPostList.boxID = 'box-post-list';
+    BoxPostList.EVENT_CLICK_HIDDEN_BOX_LIST = 'box-post-list-click-hidden';
     return BoxPostList;
 }());
 var BoxPostForm = /** @class */ (function () {
@@ -68,9 +73,9 @@ var BoxPostForm = /** @class */ (function () {
             _this.hiddenBox();
             // const boxList = document.getElementById(BoxPostList.boxID);
             // boxList.removeAttribute('style');
-            _this.eventManager.runEvent('box-post-form-click-hidden');
+            _this.eventManager.runEvent(BoxPostForm.EVENT_CLICK_HIDDEN_BOX_FORM);
         });
-        this.eventManager.addListener('box-post-list-click-hidden', function () {
+        this.eventManager.addListener(BoxPostList.EVENT_CLICK_HIDDEN_BOX_LIST, function () {
             _this.showBox();
         });
         //Sempre que surgir um novo evento, adiciono o mesmo no array do eventManager
@@ -89,6 +94,7 @@ var BoxPostForm = /** @class */ (function () {
         boxForm.removeAttribute('style');
     };
     BoxPostForm.boxId = 'box-post-form';
+    BoxPostForm.EVENT_CLICK_HIDDEN_BOX_FORM = 'box-post-form-click-hidden';
     return BoxPostForm;
 }());
 var eventManager = new EventManager();
