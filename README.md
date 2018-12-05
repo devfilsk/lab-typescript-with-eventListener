@@ -5,8 +5,8 @@ Projeto para estudo de typescript, utilizando conceitos de orientação a objeto
 - Declaração de tipos para variáveis
 - Uso de variáveis e não strings durante o código 
 - Modelagem de tipos e classes
-- Debug de código typescript no davegador utilizando recursos de mapeamento .map
-- Desacoplamento com orientação a eventos, onde os eventos são assistidos (listener) e adicionados a um array na classe EventManager
+- Debug de código typescript no navegador utilizando recursos de mapeamento .map
+- Desacoplamento com orientação a eventos, onde os eventos são adicionados a um array na classe EventManager e assistidos (listener)
  
 
 #Uso do projeto

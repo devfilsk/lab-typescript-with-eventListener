@@ -9,7 +9,7 @@ class EventManager{
     //     //Aqui são adicionados os eventos através do método addListener
     // };
 
-    //declarando os tipos para o o objeto
+    //declarando os tipos para a chave e valor do objeto
     private listeners: { [eventName:string]:Array<ListenerInterface> } = {};
 
     //Adiciona "escuta" para os eventos passados para o método addListener
@@ -111,6 +111,14 @@ class BoxPostForm{
     }
 }
 
+class PostsPage{
+    constructor(private eventManager: EventManager){
+        this.init();
+    }
+    private init(){
+        new BoxPostForm(this.eventManager);
+        new BoxPostList(this.eventManager);
+    }
+}
+new PostsPage(new EventManager());
 const eventManager = new EventManager();
-new BoxPostForm(eventManager);
-new BoxPostList(eventManager);

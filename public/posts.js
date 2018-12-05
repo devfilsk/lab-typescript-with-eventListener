@@ -4,7 +4,7 @@ var EventManager = /** @class */ (function () {
         // private listeners = {
         //     //Aqui são adicionados os eventos através do método addListener
         // };
-        //declarando os tipos para o o objeto
+        //declarando os tipos para a chave e valor do objeto
         this.listeners = {};
     }
     //Adiciona "escuta" para os eventos passados para o método addListener
@@ -97,7 +97,17 @@ var BoxPostForm = /** @class */ (function () {
     BoxPostForm.EVENT_CLICK_HIDDEN_BOX_FORM = 'box-post-form-click-hidden';
     return BoxPostForm;
 }());
+var PostsPage = /** @class */ (function () {
+    function PostsPage(eventManager) {
+        this.eventManager = eventManager;
+        this.init();
+    }
+    PostsPage.prototype.init = function () {
+        new BoxPostForm(this.eventManager);
+        new BoxPostList(this.eventManager);
+    };
+    return PostsPage;
+}());
+new PostsPage(new EventManager());
 var eventManager = new EventManager();
-new BoxPostForm(eventManager);
-new BoxPostList(eventManager);
 //# sourceMappingURL=posts.js.map
